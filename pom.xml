@@ -11,6 +11,7 @@
         <module>Web_Admin</module>
         <module>Web_Common</module>
         <module>Test_MyBatis</module>
+        <module>Core_Service</module>
     </modules>
     <repositories>
         <!--<repository>-->
@@ -64,7 +65,7 @@
         <!-- SPRING -->
         <spring.version>4.2.5.RELEASE</spring.version>
         <!-- spring boot -->
-        <spring-boot.version>1.3.1.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.1.RELEASE</spring-boot.version>
         <!-- JACKSON -->
         <jackson.version>2.6.7</jackson.version>
     </properties>
@@ -361,6 +362,11 @@
                 <version>${spring-boot.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
             <!-- Mybatis
             The MyBatis SQL mapper framework makes it easier to use a relational database with object-oriented applications.
             MyBatis couples objects with stored procedures or SQL statements using a XML descriptor or annotations.
