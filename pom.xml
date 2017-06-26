@@ -12,6 +12,8 @@
         <module>Web_Common</module>
         <module>Test_MyBatis</module>
         <module>Core_Service</module>
+        <module>Simple</module>
+        <module>A_Simple</module>
     </modules>
     <repositories>
         <!--<repository>-->
@@ -967,6 +969,22 @@
                             <groupId>org.apache.maven.surefire</groupId>
                             <artifactId>surefire-junit47</artifactId>
                             <version>2.12.4</version>
+                        </dependency>
+                        <!--<dependency>-->
+                            <!--<groupId>org.wltea</groupId>-->
+                            <!--<artifactId>IKAnalyzer</artifactId>-->
+                            <!--<version>3.2.8</version>-->
+                        <!--</dependency>-->
+                        <dependency>
+                            <groupId>com.janeluo</groupId>
+                            <artifactId>lucene-plus</artifactId>
+                            <version>0.0.2</version>
+                        </dependency>
+                        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+                        <dependency>
+                            <groupId>org.apache.lucene</groupId>
+                            <artifactId>lucene-core</artifactId>
+                            <version>6.5.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>
