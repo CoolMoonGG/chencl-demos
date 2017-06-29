@@ -14,6 +14,7 @@
         <module>Core_Service</module>
         <module>Simple</module>
         <module>A_Simple</module>
+        <module>Spring_couldstream</module>
     </modules>
     <repositories>
         <!--<repository>-->
