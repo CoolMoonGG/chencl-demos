@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd">
+
+	 <!--&lt;!&ndash;*********** 第一种SimpleTriggerBean ::>>>只支持按照一定频度调用任务，如每隔30分钟运行一次 &ndash;&gt;-->
+     <!--&lt;!&ndash;第一步：配置任务类，即spring配置文件中配置作业类JobDetailBean &ndash;&gt;-->
+    <!--<bean name="JobBySimpleTrigger" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">-->
+        <!--&lt;!&ndash; 调用的任务类 &ndash;&gt;-->
+        <!--<property name="jobClass" value="com.wangmeng.task.job.QuartzJobBySimpleTrigger" />-->
+        <!--&lt;!&ndash; 该任务类中需要注入的属性值 &ndash;&gt;-->
+        <!--<property name="jobDataAsMap">-->
+            <!--<map>-->
+               <!--<entry key="timeout" value="0" />-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;第二步：配置作业调度的触发方式（触发器） &ndash;&gt;-->
+    <!--<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">-->
+        <!--<property name="jobDetail">-->
+            <!--<ref bean="JobBySimpleTrigger"/>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 10秒后执行，检查5次 &ndash;&gt;-->
+        <!--<property name="startDelay" value="5000" />&lt;!&ndash; 调度工厂实例化后，经过5秒开始执行调度 &ndash;&gt;-->
+        <!--<property name="repeatInterval" value="2000" />&lt;!&ndash; 每2秒调度一次 &ndash;&gt;-->
+        <!--<property name="repeatCount" value="10" />&lt;!&ndash; 共调度11次，然后结束任务（启动时会执行一次） &ndash;&gt;-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;**********第一种触发器配置 end *********************************************************************&ndash;&gt;-->
+
+
+    <!--&lt;!&ndash; 第二种 CronTriggerBean ::>>>支持到指定时间运行一次，如每天12:00运行一次等 &ndash;&gt;-->
+    <!--&lt;!&ndash; 1、配置作业类和执行方法(这里采用作业类不继承特定基类的方式，也可采用第一种方式中的第一步) &ndash;&gt;-->
+    <!--<bean id="JobByCronTrigger"-->
+          <!--class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+        <!--&lt;!&ndash; 调用的任务类 &ndash;&gt;-->
+        <!--<property name="targetObject" >-->
+            <!--<bean class="com.wangmeng.task.job.QuartzJobByCronTrigger" />-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 类中的执行方法 &ndash;&gt;-->
+        <!--<property name="targetMethod" value="doJob" />-->
+        <!--&lt;!&ndash; 是否允许任务并发执行,当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程  &ndash;&gt;-->
+        <!--<property name="concurrent" value="false" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 2、配置作业调度的触发方式（触发器） &ndash;&gt;-->
+    <!--<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+        <!--<property name="jobDetail" ref="JobByCronTrigger" />-->
+        <!--&lt;!&ndash;每天17:23运行一次 &ndash;&gt;-->
+        <!--<property name="cronExpression" value="0 59 15 * * ?" />-->
+    <!--</bean>-->
+
+
+
+    <!--&lt;!&ndash;配置调度工厂(该参数指定的就是之前配置的触发器的名字) &ndash;&gt;-->
+    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+        <!--<property name="triggers">-->
+            <!--<list>-->
+                <!--<ref bean="simpleTrigger" />-->
+                <!--<ref bean="cronTrigger" />-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--二、使用Spring Schedule 任务调度实现(主要是通过对任务类的注解配置，或者使用这里的xml配置实现，相对上面的 quartz 简单多了),
+            注：采用这种方式的任务是单线程，即串行的，后面的任务会根据前面任务的执行时间往后顺延-->
+    <!--pring扫描注解的配置   -->
+    <!--<context:annotation-config />-->
+    <!--<context:component-scan base-package="com.wangmeng.task.job" />-->
+    <!--1. 自动任务-->
+    <task:executor id="executor" pool-size="5" />
+    <task:scheduler id="scheduler" pool-size="10" />
+    <!--  启动定时器,开启这个配置，spring才能识别@Scheduled注解     -->
+    <task:annotation-driven executor="executor" scheduler="scheduler"   />
+    <!--2. 配置作业类-->
+    <bean name="ScheduledJob" class="com.wangmeng.task.job.ScheduledJob"/>
+    <!--3. 配置任务列表-->
+    <task:scheduled-tasks>
+        <!--定时任务：每天15:11:00执行一次-->
+        <task:scheduled ref="ScheduledJob" method="doJob1" cron="05 19 16 * * ?"   />
+        <!--<task:scheduled ref="ScheduledJob" method="doJob1" fixed-delay="2000"   />-->
+        <!--频次任务：每隔5S执行一次-->
+        <!--<task:scheduled ref="ScheduledJob" method="doJob2" fixed-delay="5000" />-->
+        <task:scheduled ref="ScheduledJob" method="doJob2"  cron="10 19 16 * * ?" />
+    </task:scheduled-tasks>
+
+    <!--ref是工作类-->
+
+    <!--method是工作类中要执行的方法-->
+
+    <!--initial-delay 是任务第一次被调用前的延时，单位毫秒,不能和cron表达式同时使用-->
+
+    <!--fixed-delay 是上一个调用完成后再次调用的延时-->
+
+    <!--fixed-rate是上一个调用开始后再次调用的延时（不用等待上一次调用完成）-->
+
+    <!--cron是表达式，表示在什么时候进行任务调度。-->
+</beans>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangmeng.mapper.SysConfigMapper" >
+  <resultMap id="BaseResultMap" type="SysConfig" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="item_cate" property="itemCate" jdbcType="VARCHAR" />
+    <result column="item_code" property="itemCode" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="item_value" property="itemValue" jdbcType="VARCHAR" />
+    <result column="item_type" property="itemType" jdbcType="VARCHAR" />
+    <result column="item_inputs" property="itemInputs" jdbcType="VARCHAR" />
+    <result column="item_sort" property="itemSort" jdbcType="INTEGER" />
+    <result column="item_tip" property="itemTip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_cate, item_code, item_name, item_value, item_type, item_inputs, item_sort, 
+    item_tip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wm_sys_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wm_sys_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="SysConfig" >
+    insert into wm_sys_config (id, item_cate, item_code, 
+      item_name, item_value, item_type, 
+      item_inputs, item_sort, item_tip
+      )
+    values (#{id,jdbcType=BIGINT}, #{itemCate,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{itemValue,jdbcType=VARCHAR}, #{itemType,jdbcType=VARCHAR}, 
+      #{itemInputs,jdbcType=VARCHAR}, #{itemSort,jdbcType=INTEGER}, #{itemTip,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="SysConfig" >
+    insert into wm_sys_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemCate != null" >
+        item_cate,
+      </if>
+      <if test="itemCode != null" >
+        item_code,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="itemValue != null" >
+        item_value,
+      </if>
+      <if test="itemType != null" >
+        item_type,
+      </if>
+      <if test="itemInputs != null" >
+        item_inputs,
+      </if>
+      <if test="itemSort != null" >
+        item_sort,
+      </if>
+      <if test="itemTip != null" >
+        item_tip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemCate != null" >
+        #{itemCate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null" >
+        #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null" >
+        #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemInputs != null" >
+        #{itemInputs,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSort != null" >
+        #{itemSort,jdbcType=INTEGER},
+      </if>
+      <if test="itemTip != null" >
+        #{itemTip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SysConfig" >
+    update wm_sys_config
+    <set >
+      <if test="itemCate != null" >
+        item_cate = #{itemCate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        item_code = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null" >
+        item_value = #{itemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null" >
+        item_type = #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="itemInputs != null" >
+        item_inputs = #{itemInputs,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSort != null" >
+        item_sort = #{itemSort,jdbcType=INTEGER},
+      </if>
+      <if test="itemTip != null" >
+        item_tip = #{itemTip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SysConfig" >
+    update wm_sys_config
+    set item_cate = #{itemCate,jdbcType=VARCHAR},
+      item_code = #{itemCode,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_value = #{itemValue,jdbcType=VARCHAR},
+      item_type = #{itemType,jdbcType=VARCHAR},
+      item_inputs = #{itemInputs,jdbcType=VARCHAR},
+      item_sort = #{itemSort,jdbcType=INTEGER},
+      item_tip = #{itemTip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

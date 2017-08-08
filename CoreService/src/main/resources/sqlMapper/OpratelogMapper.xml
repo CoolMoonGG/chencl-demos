@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangmeng.mapper.OpratelogMapper" >
+  <resultMap id="BaseResultMap" type="com.wangmeng.beans.Opratelog" >
+    <id column="Id" property="id" jdbcType="BIGINT" />
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="PageName" property="pagename" jdbcType="VARCHAR" />
+    <result column="Action" property="action" jdbcType="VARCHAR" />
+    <result column="ActionDescript" property="actiondescript" jdbcType="VARCHAR" />
+    <result column="Contents" property="contents" jdbcType="VARCHAR" />
+    <result column="Opereadate" property="opereadate" jdbcType="TIMESTAMP" />
+    <result column="IPAddress" property="ipaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, UserId, UserName, PageName, Action, ActionDescript, Contents, Opereadate, IPAddress
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wm_oprationlog_t
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wm_oprationlog_t
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wangmeng.beans.Opratelog" >
+    insert into wm_oprationlog_t (Id, UserId, UserName, 
+      PageName, Action, ActionDescript, 
+      Contents, Opereadate, IPAddress
+      )
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{pagename,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, #{actiondescript,jdbcType=VARCHAR}, 
+      #{contents,jdbcType=VARCHAR}, #{opereadate,jdbcType=TIMESTAMP}, #{ipaddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangmeng.beans.Opratelog" >
+    insert into wm_oprationlog_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="pagename != null" >
+        PageName,
+      </if>
+      <if test="action != null" >
+        Action,
+      </if>
+      <if test="actiondescript != null" >
+        ActionDescript,
+      </if>
+      <if test="contents != null" >
+        Contents,
+      </if>
+      <if test="opereadate != null" >
+        Opereadate,
+      </if>
+      <if test="ipaddress != null" >
+        IPAddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="pagename != null" >
+        #{pagename,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="actiondescript != null" >
+        #{actiondescript,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="opereadate != null" >
+        #{opereadate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipaddress != null" >
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangmeng.beans.Opratelog" >
+    update wm_oprationlog_t
+    <set >
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="pagename != null" >
+        PageName = #{pagename,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        Action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="actiondescript != null" >
+        ActionDescript = #{actiondescript,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        Contents = #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="opereadate != null" >
+        Opereadate = #{opereadate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipaddress != null" >
+        IPAddress = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangmeng.beans.Opratelog" >
+    update wm_oprationlog_t
+    set UserId = #{userid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      PageName = #{pagename,jdbcType=VARCHAR},
+      Action = #{action,jdbcType=VARCHAR},
+      ActionDescript = #{actiondescript,jdbcType=VARCHAR},
+      Contents = #{contents,jdbcType=VARCHAR},
+      Opereadate = #{opereadate,jdbcType=TIMESTAMP},
+      IPAddress = #{ipaddress,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

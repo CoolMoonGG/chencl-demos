@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:motan="http://api.weibo.com/schema/motan"
+    xmlns="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
+
+    <!-- 注册中心配置 使用不同注册中心需要依赖对应的jar包。如果不使用注册中心，可以把check属性改为false，忽略注册失败。-->
+    <!--<motan:registry regProtocol="local" name="registry" />-->
+    <!--<motan:registry regProtocol="consul" name="registry" address="127.0.0.1:8500"/>-->
+    <motan:registry regProtocol="zookeeper" name="registry" address="${zookeeper.server}" connectTimeout="2000"/>
+
+    <!-- 协议配置。为防止多个业务配置冲突，推荐使用id表示具体协议。-->
+    <motan:protocol id="coreMotan" default="true" name="motan"
+                    maxServerConnection="80000" maxContentLength="1048576"
+                    maxWorkerThread="2000" minWorkerThread="20"/>
+
+    <!-- 通用配置，多个rpc服务使用相同的基础配置. group和module定义具体的服务池。export格式为“protocol id:提供服务的端口”-->
+    <motan:basicService export="coreMotan:20042"
+                        group="motan-service-rpc-${profile.name}" accessLog="false" shareChannel="true" module="motan-service-rpc"
+                        application="CoreService-app" registry="registry" id="serviceBasicConfig"/>
+
+    <!-- 具体rpc服务配置，声明实现的接口类。-->
+
+    <!-- 缓存服务 -->
+    <!-- redis -->
+    <!--<bean id="cacheExtService" class="com.wangmeng.service.impl.RedisCacheServiceImpl">-->
+        <!--<property name="redisFacade" ref="redisFacade"></property>-->
+    <!--</bean>-->
+    <!--<motan:service interface="com.wangmeng.service.api.ICacheExtService" ref="cacheExtService" basicService="serviceBasicConfig" />-->
+
+
+    <!-- 系统管理服务模块 -->
+
+	<!-- 用户信息 -->
+	<bean id="userServiceImpl" class="com.wangmeng.service.impl.UserServiceImpl" />
+    <motan:service interface="com.wangmeng.service.api.IUserService" ref="userServiceImpl" basicService="serviceBasicConfig" />
+
+    <!--&lt;!&ndash; 权限服务 &ndash;&gt;-->
+    <!--<bean id="authorityServiceImpl" class="com.wangmeng.sys.authority.impl.AuthorityServiceImpl"/>-->
+    <!--<motan:service interface="com.wangmeng.sys.authority.api.IAuthorityService" ref="authorityServiceImpl" basicService="serviceBasicConfig" />-->
+
+    <!--&lt;!&ndash; 操作日志服务 &ndash;&gt;-->
+    <!--<bean id="businessoperationlogServiceImpl" class="com.wangmeng.service.impl.BusinessoperationlogServiceImpl"/>-->
+    <!--<motan:service interface="com.wangmeng.service.api.BusinessoperationlogService"-->
+                   <!--ref="businessoperationlogServiceImpl" basicService="serviceBasicConfig"/>-->
+
+    <!--&lt;!&ndash; 数据库字典服务 &ndash;&gt;-->
+    <!--<bean id="dictionaryServiceImpl" class="com.wangmeng.service.impl.DictionaryServiceImpl" />-->
+    <!--<motan:service interface="com.wangmeng.service.api.IDictionaryService" ref="dictionaryServiceImpl" basicService="serviceBasicConfig"/>-->
+
+</beans>

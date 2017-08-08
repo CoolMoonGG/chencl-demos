@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangmeng.mapper.SysPowerMapper" >
+  <resultMap id="BaseResultMap" type="SysPower" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="xuid" property="xuid" jdbcType="VARCHAR" />
+    <result column="power_name" property="powerName" jdbcType="VARCHAR" />
+    <result column="redirect_url" property="redirectUrl" jdbcType="VARCHAR" />
+    <result column="superid" property="superid" jdbcType="VARCHAR" />
+    <result column="sta" property="sta" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="display" property="display" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="owner_sys" property="ownerSys" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, xuid, power_name, redirect_url, superid, sta, create_time, modify_time, remark, 
+    display, source_type, owner_sys
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wm_sys_power
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wm_sys_power
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="SysPower" >
+    insert into wm_sys_power (id, xuid, power_name, 
+      redirect_url, superid, sta, 
+      create_time, modify_time, remark, 
+      display, source_type, owner_sys
+      )
+    values (#{id,jdbcType=BIGINT}, #{xuid,jdbcType=VARCHAR}, #{powerName,jdbcType=VARCHAR}, 
+      #{redirectUrl,jdbcType=VARCHAR}, #{superid,jdbcType=VARCHAR}, #{sta,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{display,jdbcType=INTEGER}, #{sourceType,jdbcType=INTEGER}, #{ownerSys,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="SysPower" >
+    insert into wm_sys_power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="xuid != null" >
+        xuid,
+      </if>
+      <if test="powerName != null" >
+        power_name,
+      </if>
+      <if test="redirectUrl != null" >
+        redirect_url,
+      </if>
+      <if test="superid != null" >
+        superid,
+      </if>
+      <if test="sta != null" >
+        sta,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="ownerSys != null" >
+        owner_sys,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="xuid != null" >
+        #{xuid,jdbcType=VARCHAR},
+      </if>
+      <if test="powerName != null" >
+        #{powerName,jdbcType=VARCHAR},
+      </if>
+      <if test="redirectUrl != null" >
+        #{redirectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="superid != null" >
+        #{superid,jdbcType=VARCHAR},
+      </if>
+      <if test="sta != null" >
+        #{sta,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="ownerSys != null" >
+        #{ownerSys,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SysPower" >
+    update wm_sys_power
+    <set >
+      <if test="xuid != null" >
+        xuid = #{xuid,jdbcType=VARCHAR},
+      </if>
+      <if test="powerName != null" >
+        power_name = #{powerName,jdbcType=VARCHAR},
+      </if>
+      <if test="redirectUrl != null" >
+        redirect_url = #{redirectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="superid != null" >
+        superid = #{superid,jdbcType=VARCHAR},
+      </if>
+      <if test="sta != null" >
+        sta = #{sta,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="ownerSys != null" >
+        owner_sys = #{ownerSys,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SysPower" >
+    update wm_sys_power
+    set xuid = #{xuid,jdbcType=VARCHAR},
+      power_name = #{powerName,jdbcType=VARCHAR},
+      redirect_url = #{redirectUrl,jdbcType=VARCHAR},
+      superid = #{superid,jdbcType=VARCHAR},
+      sta = #{sta,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      display = #{display,jdbcType=INTEGER},
+      source_type = #{sourceType,jdbcType=INTEGER},
+      owner_sys = #{ownerSys,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

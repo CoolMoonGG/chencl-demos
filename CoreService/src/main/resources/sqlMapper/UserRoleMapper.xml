@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangmeng.mapper.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="UserRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="roleid" property="roleid" jdbcType="BIGINT" />
+    <result column="xuid" property="xuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, roleid, xuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wm_sys_user_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wm_sys_user_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="UserRole" >
+    insert into wm_sys_user_role (id, userid, roleid, 
+      xuid)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{roleid,jdbcType=BIGINT}, 
+      #{xuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="UserRole" >
+    insert into wm_sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="xuid != null" >
+        xuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="xuid != null" >
+        #{xuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="UserRole" >
+    update wm_sys_user_role
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="xuid != null" >
+        xuid = #{xuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="UserRole" >
+    update wm_sys_user_role
+    set userid = #{userid,jdbcType=BIGINT},
+      roleid = #{roleid,jdbcType=BIGINT},
+      xuid = #{xuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

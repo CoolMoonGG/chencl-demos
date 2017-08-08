@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<!--<setting name="logImpl" value="LOG4J"/>-->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+	<!--用来指定Mybatis的Interceptor-->
+	<plugins>
+		<!-- 分页拦截器，整合参数类型和方法名称两种拦截模式 -->
+	    <plugin interceptor="com.wangmeng.mybatis.PaginationInterceptor">
+	    	<!-- 如果启用了名称自动发现 -->
+			<property name="pageSqlId" value=".*ListByPage" />
+	    </plugin>
+	</plugins>
+
+</configuration>
