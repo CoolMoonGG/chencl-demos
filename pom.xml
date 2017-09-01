@@ -15,6 +15,8 @@
         <module>Web_Common</module>
         <module>CoreService</module>
         <module>A_Simple</module>
+        <module>springBoot-mvc</module>
+        <module>springBoot-mvc</module>
     </modules>
     <repositories>
         <!--<repository>-->

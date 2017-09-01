@@ -37,7 +37,7 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.wangmeng.topic.domain" targetProject="F:\IDEA\Programs\chencl-demos\springBoot-mybatis\src\main\java">
+		<javaModelGenerator targetPackage="com.wangmeng.advertisement.domain" targetProject="F:\IDEA\Programs\chencl-demos\springBoot-mybatis\src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
@@ -46,15 +46,19 @@
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成mapping的包名和位置 -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.wangmeng.topic.mapping" targetProject="F:\IDEA\Programs\chencl-demos\springBoot-mybatis\src\main\java">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.wangmeng.advertisement.mapping" targetProject="F:\IDEA\Programs\chencl-demos\springBoot-mybatis\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-		<table tableName="wm_publish_topic" domainObjectName="PublishTopic" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		<table tableName="wm_advertisement" domainObjectName="Advertisement" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="Id" sqlStatement="MySql" identity="true"/>
 		</table>
-		<table tableName="wm_publish_comment" domainObjectName="PublishComment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		<table tableName="wm_ad_image" domainObjectName="ADImage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<!--使用驼峰式命名-->
 			<property name="useActualColumnNames" value="true" />
+			<!--插入时自动返回主键-->
+			<generatedKey column="Id" sqlStatement="MySql" identity="true"/>
 	    </table>
 	</context>
 </generatorConfiguration>
