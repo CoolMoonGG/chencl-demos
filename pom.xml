@@ -15,8 +15,7 @@
         <module>Web_Common</module>
         <module>CoreService</module>
         <module>A_Simple</module>
-        <module>springBoot-mvc</module>
-        <module>springBoot-mvc</module>
+        <module>Web_App</module>
     </modules>
     <repositories>
         <!--<repository>-->
@@ -384,6 +383,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
             <!-- Mybatis

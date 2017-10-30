@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ImportResource;
 
 
 @SpringBootApplication
-@ImportResource("classpath:spring/spring.xml")
+@ImportResource("classpath:spring/application.xml")
 public class CoreServiceApplication {
 
 	private static Logger logger = Logger.getLogger(CoreServiceApplication.class.getName());

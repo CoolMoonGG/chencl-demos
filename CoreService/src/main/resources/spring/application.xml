@@ -23,7 +23,7 @@
 		</constructor-arg>
 	</bean>
 
-	<!--<import resource="classpath:spring/spring-task.xml"/>-->
-	<import resource="classpath:spring/spring-motan.xml"/>
+	<!--<import resource="classpath:spring/application-task.xml"/>-->
+	<import resource="classpath:spring/application-motan.xml"/>
 
 </beans>

@@ -1,0 +1,18 @@
+[INFO] Scanning for projects...
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] Child module F:\IDEA\Programs\chencl-demos\springBoot-mvc of F:\IDEA\Programs\chencl-demos\pom.xml does not exist @ 
+[ERROR] Child module F:\IDEA\Programs\chencl-demos\springBoot-mvc of F:\IDEA\Programs\chencl-demos\pom.xml does not exist @ 
+[ERROR] 'modules.module[8]' specifies duplicate child module springBoot-mvc @ line 19, column 17
+ @ 
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]   
+[ERROR]   The project com.wangmeng:chencl-demos:1.0-SNAPSHOT (F:\IDEA\Programs\chencl-demos\pom.xml) has 3 errors
+[ERROR]     Child module F:\IDEA\Programs\chencl-demos\springBoot-mvc of F:\IDEA\Programs\chencl-demos\pom.xml does not exist
+[ERROR]     Child module F:\IDEA\Programs\chencl-demos\springBoot-mvc of F:\IDEA\Programs\chencl-demos\pom.xml does not exist
+[ERROR]     'modules.module[8]' specifies duplicate child module springBoot-mvc @ line 19, column 17
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException

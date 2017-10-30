@@ -16,7 +16,7 @@
 		<!-- 生成的domain，将implements Serializable-->
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 		<!--domain类注释自定义生成器-->
-		<commentGenerator type="com.wangmeng.mybatis.MyCommentGenerator">
+		<commentGenerator type="org.mybatis.generator.MyCommentGenerator">
 			<!--<property name="suppressAllComments" value="true" />--><!-- 是否取消注释 -->
 			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳-->
 
