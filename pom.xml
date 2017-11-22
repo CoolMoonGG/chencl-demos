@@ -11,18 +11,17 @@
         <module>springBoot-api</module>
         <module>springBoot-mybatis</module>
         <module>spring-initializr</module>
-        <module>Web_Admin</module>
         <module>Web_Common</module>
         <module>CoreService</module>
         <module>A_Simple</module>
         <module>Web_App</module>
     </modules>
     <repositories>
-        <!--<repository>-->
-            <!--<id>nexus</id>-->
-            <!--<name>Team Nexus Repository</name>-->
-            <!--<url>http://192.165.4.200:28081/nexus/content/groups/public</url>-->
-        <!--</repository>-->
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://192.165.4.200:28081/nexus/content/groups/public</url>
+        </repository>
 
         <repository>
             <id>aliyun</id>
@@ -40,11 +39,11 @@
 
     <pluginRepositories>
         <!-- team plugin -->
-        <!--<pluginRepository>-->
-            <!--<id>nexus</id>-->
-            <!--<name>Team Nexus Repository</name>-->
-            <!--<url>http://192.165.4.200:28081/nexus/content/groups/public</url>-->
-        <!--</pluginRepository>-->
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://192.165.4.200:28081/nexus/content/groups/public</url>
+        </pluginRepository>
 
         <!-- aliyun plugin -->
         <pluginRepository>
@@ -55,10 +54,39 @@
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+    <!-- 上传jar到私有服务器 -->
+    <distributionManagement>
+        <!--<repository>-->
+            <!--<id>releases</id>-->
+            <!--<name>Local Nexus Repository</name>-->
+            <!--<url>http://192.165.4.200:28081/nexus/content/repositories/releases</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>snapshots</id>-->
+            <!--<name>Local Nexus Repository</name>-->
+            <!--<url>http://192.165.4.200:28081/nexus/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
+    </distributionManagement>
+
+    <properties>
+        <!-- PROJECT -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- JDK  -->
+        <jdk.version>1.7</jdk.version>
+        <!-- MOTAN -->
+        <motan.version>0.2.2</motan.version>
+        <!-- SPRING -->
+        <spring.version>4.3.8.RELEASE</spring.version>
+        <!-- spring boot -->
+        <spring-boot.version>1.4.0.RELEASE</spring-boot.version>
+        <!-- JACKSON -->
+        <jackson.version>2.6.7</jackson.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -78,20 +106,7 @@
             <artifactId>fastjson</artifactId>
         </dependency>
     </dependencies>
-    <properties>
-        <!-- PROJECT -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- JDK  -->
-        <jdk.version>1.7</jdk.version>
-        <!-- MOTAN -->
-        <motan.version>0.2.2</motan.version>
-        <!-- SPRING -->
-        <spring.version>4.3.8.RELEASE</spring.version>
-        <!-- spring boot -->
-        <spring-boot.version>1.4.0.RELEASE</spring-boot.version>
-        <!-- JACKSON -->
-        <jackson.version>2.6.7</jackson.version>
-    </properties>
+
     <dependencyManagement>
         <dependencies>
             <!--
