@@ -18,14 +18,15 @@
         <module>springBoot-mybatis</module>
         <module>Web_Common</module>
         <module>CoreService</module>
+        <module>A_test</module>
         <!--<module>A_Simple</module>-->
     </modules>
     <repositories>
-        <repository>
-            <id>nexus</id>
-            <name>Team Nexus Repository</name>
-            <url>http://192.165.4.200:28081/nexus/content/groups/public</url>
-        </repository>
+        <!--<repository>-->
+            <!--<id>nexus</id>-->
+            <!--<name>Team Nexus Repository</name>-->
+            <!--<url>http://192.165.4.200:28081/nexus/content/groups/public</url>-->
+        <!--</repository>-->
 
         <repository>
             <id>aliyun</id>
@@ -85,7 +86,7 @@
         <!-- MOTAN -->
         <motan.version>1.1.0</motan.version>
         <!-- SPRING -->
-        <spring.version>5.0.4.RELEASE</spring.version>
+        <spring.version>4.3.14.RELEASE</spring.version>
         <!-- spring boot -->
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <!-- JACKSON -->
