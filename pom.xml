@@ -15,10 +15,11 @@
     </parent>
     <modules>
         <module>springBoot-api</module>
-        <module>springBoot-mybatis</module>
+        <!--<module>springBoot-mybatis</module>-->
         <module>Web_Common</module>
         <module>CoreService</module>
-        <module>A_test</module>
+        <module>springBoot-thymeleaf</module>
+        <!--<module>A_test</module>-->
         <!--<module>A_Simple</module>-->
     </modules>
     <repositories>
