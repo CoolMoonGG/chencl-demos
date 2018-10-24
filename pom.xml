@@ -20,7 +20,6 @@
         <module>CoreService</module>
         <module>springBoot-thymeleaf</module>
         <!--<module>A_test</module>-->
-        <!--<module>A_Simple</module>-->
     </modules>
     <repositories>
         <!--<repository>-->
@@ -91,7 +90,7 @@
         <!-- spring boot -->
         <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <!-- JACKSON -->
-        <jackson.version>2.6.7</jackson.version>
+        <jackson.version>2.9.0</jackson.version>
     </properties>
 <dependencyManagement>
     <dependencies>
@@ -350,6 +349,7 @@
             <artifactId>spring-boot-starter-aop</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+        <!--使用RedisTemplate-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -408,6 +408,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>1.5.2.RELEASE</version>
+            <optional>true</optional><!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
         </dependency>
 
 
@@ -928,6 +934,30 @@
             <artifactId>carrier</artifactId>
             <version>1.5</version>
         </dependency>
+        <!--start redis distributed lock-->
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.25.Final</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--<artifactId>jackson-core</artifactId>-->
+            <!--<version>2.9.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--<artifactId>jackson-databind</artifactId>-->
+            <!--<version>2.9.0</version>-->
+        <!--</dependency>-->
+        <!--end redis distributed lock-->
+
     </dependencies>
 </dependencyManagement>
 
@@ -935,6 +965,13 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <fork>true</fork><!-- fork: 如果没有配置该项配置，devtools不会起作用的，即应用不会restear -->
+                    </configuration>
+                </plugin>
                 <!-- compiler插件, 设定JDK版本 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
