@@ -957,7 +957,17 @@
             <!--<version>2.9.0</version>-->
         <!--</dependency>-->
         <!--end redis distributed lock-->
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-mock</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+        <!-- springBoot 集成kafka-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.1.0.RELEASE</version>
+        </dependency>
     </dependencies>
 </dependencyManagement>
 
