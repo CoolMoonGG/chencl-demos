@@ -1,7 +1,4 @@
-/*
- * @(#)ActionResult.java 2016-10-8下午4:08:10
- * Copyright © 2016 网盟. All rights reserved.
- */
+
 package com.wangmeng.base;
 
 import com.wangmeng.beans.AbstractSerializable;
@@ -9,18 +6,6 @@ import com.wangmeng.beans.AbstractSerializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 
- * <ul>
- * <li>
- * <p>
- * @author 陈春磊 [2016-10-8下午4:08:10]<br/>
- * 新建
- * </p>
- * <b>修改历史：</b><br/>
- * </li>
- * </ul>
- */
 
 public class ActionResult extends AbstractSerializable {
 
